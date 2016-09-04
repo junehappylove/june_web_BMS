@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DicInfoMapper">
+	<!-- 修改 -->
+	<update id="edit" parameterType="pt">
+		UPDATE  DIC_INFO
+			set DIC_CODE	= #{DIC_CODE},
+				DIC_NAME 	= #{DIC_NAME},
+				DIC_TYPE 	= #{DIC_TYPE},
+				DIC_SQL 	= #{DIC_SQL},
+				IS_SYS		= #{IS_SYS},
+				SORT_KEY	= #{SORT_KEY}
+			where 
+				DIC_CODE = #{DIC_CODE}
+	</update>
+	
+	<!-- 通过id获取数据 -->
+	<select id="findById" parameterType="pt" resultType="pt">
+		select 
+			DIC_CODE,
+			DIC_NAME,
+			DIC_TYPE,
+			DIC_SQL,
+			IS_SYS,
+			SORT_KEY
+		from 
+			DIC_INFO
+		where 
+			DIC_CODE = #{DIC_CODE}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="save" parameterType="pt">
+		insert into DIC_INFO (
+			DIC_CODE,
+			DIC_NAME,
+			DIC_TYPE,
+			DIC_SQL,
+			IS_SYS,
+			SORT_KEY
+		) values (
+			#{DIC_CODE},
+			#{DIC_NAME},
+			#{DIC_TYPE},
+			#{DIC_SQL},
+			#{IS_SYS},
+			#{SORT_KEY}
+		)
+	</insert>
+	
+	<!-- 列表 -->
+	<select id="listPage" parameterType="page" resultType="pt">
+		select 
+			DIC_CODE,
+			DIC_NAME,
+			DIC_TYPE,
+			DIC_SQL,
+			IS_SYS,
+			SORT_KEY
+		from DIC_INFO z1
+		where 1=1
+		<if test="pt.SEARCH_KEY != null and pt.SEARCH_KEY != ''">
+			AND ( 
+				z1.DIC_CODE LIKE CONCAT(CONCAT('%', #{pt.SEARCH_KEY}),'%')
+				OR
+				z1.DIC_NAME LIKE CONCAT(CONCAT('%', #{pt.SEARCH_KEY}),'%')
+			) 
+		</if>
+		order by z1.SORT_KEY
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="findCount" parameterType="pt" resultType="pt">
+		select 
+			count(DIC_CODE) ZS
+		from 
+			DIC_INFO
+		where 1=1
+	</select>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="pt">
+		delete from DIC_INFO 
+		where DIC_CODE = #{DIC_CODE}
+	</delete>
+	
+</mapper>
