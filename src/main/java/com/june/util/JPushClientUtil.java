@@ -71,6 +71,7 @@ public class JPushClientUtil extends BaseController{
 		//MessageResult msgResult = jpush.sendNotificationWithAlias(sendNo,userid, msgTitle, msgContent);
 		//MessageResult msgResult = jpush.sendCustomMessageWithAppKey(sendNo,msgTitle, msgContent);
 		MessageResult msgResult = jpush.sendNotificationWithAppKey(sendNo,msgTitle, msgContent);
+		//cn.jpush.api.push.MessageResult msgResult = jpush.sendCustomMessage(msgTitle, msgContent, params, extras); 
 		
 		if (null != msgResult) {
 			result = "服务器返回数据: " + msgResult.toString();

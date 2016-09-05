@@ -1,6 +1,5 @@
 package com.june.util;
 
-
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -9,10 +8,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.servlet.*;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-
-
-
-import Decoder.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -151,11 +146,11 @@ public class Uploader {
 		String base64Data = this.request.getParameter(fieldName);
 		this.fileName = this.getName("test.png");
 		this.url = savePath + "/" + this.fileName;
-		BASE64Decoder decoder = new BASE64Decoder();
+		//Decoder.BASE64Decoder decoder = new Decoder.BASE64Decoder();
 		try {
 			File outFile = new File(this.getPhysicalPath(this.url));
 			OutputStream ro = new FileOutputStream(outFile);
-			byte[] b = decoder.decodeBuffer(base64Data);
+			byte[] b = net.iharder.Base64.decode(base64Data);
 			for (int i = 0; i < b.length; ++i) {
 				if (b[i] < 0) {
 					b[i] += 256;

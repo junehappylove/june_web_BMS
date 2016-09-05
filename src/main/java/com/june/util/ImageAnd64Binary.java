@@ -6,10 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import Decoder.BASE64Decoder;
-import Decoder.BASE64Encoder;
-
-
 public class ImageAnd64Binary {
     public static void main(String[] args){
     	
@@ -42,9 +38,8 @@ public class ImageAnd64Binary {
         }
         
         //对字节数组Base64编码
-        BASE64Encoder encoder = new BASE64Encoder();
-        
-        return encoder.encode(data);//返回Base64编码过的字节数组字符串
+        //BASE64Encoder encoder = new BASE64Encoder();
+        return net.iharder.Base64.encodeBytes(data);//返回Base64编码过的字节数组字符串
     }
     
     /**
@@ -56,10 +51,10 @@ public class ImageAnd64Binary {
     public static boolean generateImage(String imgStr, String imgCreatePath){
         if (imgStr == null) //图像数据为空
             return false;
-        BASE64Decoder decoder = new BASE64Decoder();
+        //BASE64Decoder decoder = new BASE64Decoder();
         try {
             //Base64解码
-            byte[] b = decoder.decodeBuffer(imgStr);
+            byte[] b = net.iharder.Base64.decode(imgStr);
             for(int i=0;i<b.length;++i) {
                 if(b[i]<0) {//调整异常数据
                     b[i]+=256;
