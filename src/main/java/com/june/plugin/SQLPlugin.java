@@ -34,6 +34,8 @@ import com.june.util.Tools;
 /**
  * 
  * SQL插件 <br>
+ * 该拦截器拦截mybatis的query和update操作,能统计sql执行时间,可以根据执行时间打印sql语句.
+ * 打印的sql语句是带参数的,没有?,可以拷贝到查询分析器什么的直接运行.
  * 
  * @author 王俊伟 wjw.happy.love@163.com
  * @date 2016年8月18日 下午7:25:13
