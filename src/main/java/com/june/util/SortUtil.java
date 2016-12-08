@@ -25,14 +25,14 @@ public class SortUtil {
 	 * @param param1   排序的参数名称
 	 * @param orderType 排序类型：正序-asc；倒序-desc  
 	 */
-	public static List sort(List sortList, String param1, String orderType){
-		Comparator mycmp1 = ComparableComparator.getInstance ();
+	public static List<?> sort(List<?> sortList, String param1, String orderType){
+		Comparator<?> mycmp1 = ComparableComparator.getInstance ();
 		if("desc".equals(orderType)){
 			mycmp1 = ComparatorUtils. reversedComparator(mycmp1); //逆序（默认为正序）
 		}
 		
 		ArrayList<Object> sortFields = new ArrayList<Object>();
-		sortFields.add( new BeanComparator(param1 , mycmp1)); //主排序（第一排序）
+		sortFields.add(new BeanComparator(param1 , mycmp1)); //主排序（第一排序）
 
 		ComparatorChain multiSort = new ComparatorChain(sortFields);
 		Collections.sort (sortList , multiSort);

@@ -9,7 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-
+/**
+ * 
+ * TODO <br>
+ * 
+ * @author 王俊伟 wjw.happy.love@163.com
+ * @date 2016年12月7日 下午6:51:38
+ */
 public class RequestUtil {
 	
 	public static String getValue(){
@@ -17,9 +23,9 @@ public class RequestUtil {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		PageData pd = new PageData(request);
 		
-		Map properties = request.getParameterMap();
+		Map<?, ?> properties = request.getParameterMap();
 		Map returnMap = new HashMap(); 
-		Iterator entries = properties.entrySet().iterator(); 
+		Iterator<?> entries = properties.entrySet().iterator(); 
 		Map.Entry entry; 
 		String name = "";  
 		String value = "";  

@@ -3,8 +3,11 @@ package com.june.util;
 import java.lang.reflect.Field;
 
 /**
- * @author Administrator
- *	反射工具
+ * 
+ * 反射工具 <br>
+ * 
+ * @author 王俊伟 wjw.happy.love@163.com
+ * @date 2016年12月7日 下午6:51:23
  */
 public class ReflectHelper {
 	/**
